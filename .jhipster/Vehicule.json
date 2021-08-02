@@ -1,0 +1,83 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "ecole",
+            "otherEntityName": "ecole",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "candidat",
+            "otherEntityName": "candidat",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "seance",
+            "otherEntityName": "seance",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "charge",
+            "otherEntityName": "charge",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "assurance",
+            "otherEntityName": "assurance",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "vignette",
+            "otherEntityName": "vignette",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "entretien",
+            "otherEntityName": "entretien",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vehicule"
+        },
+        {
+            "relationshipName": "moniteur",
+            "otherEntityName": "moniteur",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "vehicule"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "matricule",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "marque",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200606100908",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "vehicule",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

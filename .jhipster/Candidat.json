@@ -1,0 +1,110 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "ecole",
+            "otherEntityName": "ecole",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "payement",
+            "otherEntityName": "payement",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "formation",
+            "otherEntityName": "formation",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "examen",
+            "otherEntityName": "examen",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "moniteur",
+            "otherEntityName": "moniteur",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "vehicule",
+            "otherEntityName": "vehicule",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "candidat"
+        },
+        {
+            "relationshipName": "seance",
+            "otherEntityName": "seance",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "candidat"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "cin",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "situation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20200605140449",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "candidat",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

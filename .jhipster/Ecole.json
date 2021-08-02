@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "moniteur",
+            "otherEntityName": "moniteur",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "ecole"
+        },
+        {
+            "relationshipName": "candidat",
+            "otherEntityName": "candidat",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "ecole"
+        },
+        {
+            "relationshipName": "vehicule",
+            "otherEntityName": "vehicule",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "ecole"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateCreation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tarifs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200605132347",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "ecole",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

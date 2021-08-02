@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "vehicule",
+            "otherEntityName": "vehicule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "assurance"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateDebut",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateFin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20200606101209",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "assurance",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

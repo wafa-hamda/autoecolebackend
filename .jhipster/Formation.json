@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "candidat",
+            "otherEntityName": "candidat",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "formation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateDebut",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateFin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nbrHeureCode",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prixheureCode",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nbrHeureConduit",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prixHeureConduit",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "disponobilte",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200605150240",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "formation",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

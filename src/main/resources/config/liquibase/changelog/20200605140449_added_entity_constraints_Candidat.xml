@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Candidat.
+    -->
+    <changeSet id="20200605140449-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ecole_id"
+                                 baseTableName="candidat"
+                                 constraintName="fk_candidat_ecole_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ecole"/>
+
+        <addForeignKeyConstraint baseColumnNames="payement_id"
+                                 baseTableName="candidat"
+                                 constraintName="fk_candidat_payement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payement"/>
+
+        <addForeignKeyConstraint baseColumnNames="formation_id"
+                                 baseTableName="candidat"
+                                 constraintName="fk_candidat_formation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="formation"/>
+
+    </changeSet>
+</databaseChangeLog>
