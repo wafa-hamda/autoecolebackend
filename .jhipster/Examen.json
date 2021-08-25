@@ -1,53 +1,61 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "candidat",
-            "otherEntityName": "candidat",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "examen"
-        },
-        {
-            "relationshipName": "moniteur",
-            "otherEntityName": "moniteur",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "examen"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "date",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "type",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "result",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "remarque",
-            "fieldType": "String"
-        }
-    ],
-    "changelogDate": "20200605145351",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "examen",
-    "databaseType": "sql",
-    "readOnly": false,
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "candidat",
+      "otherEntityName": "candidat",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "examen"
+    },
+    {
+      "relationshipName": "moniteur",
+      "otherEntityName": "moniteur",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "examen"
+    },
+    {
+      "relationshipName": "vehicule",
+      "otherEntityName": "vehicule",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "examen"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "resultat",
+      "fieldType": "Resultat",
+      "fieldValues": "ADMIN,REFUSE"
+    },
+    {
+      "fieldName": "dateExamen",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "pointDepart",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeExamen",
+      "fieldType": "TypeMoniteur",
+      "fieldValues": "CODE,CONDUIT"
+    }
+  ],
+  "changelogDate": "20200605145351",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "examen",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "pagination"
 }

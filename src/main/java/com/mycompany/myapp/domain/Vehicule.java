@@ -1,13 +1,11 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,37 +30,23 @@ public class Vehicule implements Serializable {
     @Column(name = "marque")
     private String marque;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "age")
+    private Integer age;
 
-    @ManyToOne
-    @JsonIgnoreProperties("vehicules")
-    private Ecole ecole;
+    @Column(name = "description")
+    private String description;
 
-    @ManyToMany
-    @JsonIgnore
-    private Set<Candidat> candidats = new HashSet<>();
+    @Column(name = "color")
+    private String color;
 
-    @OneToMany(mappedBy = "vehicule")
-    private Set<Seance> seances = new HashSet<>();
-
-    @OneToMany(mappedBy = "vehicule")
-    private Set<Charge> charges = new HashSet<>();
-
-    @OneToMany(mappedBy = "vehicule")
-    private Set<Assurance> assurances = new HashSet<>();
-
-    @OneToMany(mappedBy = "vehicule")
-    private Set<Vignette> vignettes = new HashSet<>();
-
-    @OneToMany(mappedBy = "vehicule")
-    private Set<Entretien> entretiens = new HashSet<>();
+    @Column(name = "image_url")
+    private String image_Url;
 
     @ManyToMany(mappedBy = "vehicules")
     @JsonIgnore
     private Set<Moniteur> moniteurs = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -97,180 +81,56 @@ public class Vehicule implements Serializable {
         this.marque = marque;
     }
 
-    public String getType() {
-        return type;
+    public Integer getAge() {
+        return age;
     }
 
-    public Vehicule type(String type) {
-        this.type = type;
+    public Vehicule age(Integer age) {
+        this.age = age;
         return this;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public Ecole getEcole() {
-        return ecole;
+    public String getDescription() {
+        return description;
     }
 
-    public Vehicule ecole(Ecole ecole) {
-        this.ecole = ecole;
+    public Vehicule description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setEcole(Ecole ecole) {
-        this.ecole = ecole;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Set<Candidat> getCandidats() {
-        return candidats;
+    public String getColor() {
+        return color;
     }
 
-    public Vehicule candidats(Set<Candidat> candidats) {
-        this.candidats = candidats;
+    public Vehicule color(String color) {
+        this.color = color;
         return this;
     }
 
-    public Vehicule addCandidat(Candidat candidat) {
-        this.candidats.add(candidat);
-        candidat.getVehicules().add(this);
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getImage_Url() {
+        return image_Url;
+    }
+
+    public Vehicule image_Url(String image_Url) {
+        this.image_Url = image_Url;
         return this;
     }
 
-    public Vehicule removeCandidat(Candidat candidat) {
-        this.candidats.remove(candidat);
-        candidat.getVehicules().remove(this);
-        return this;
-    }
-
-    public void setCandidats(Set<Candidat> candidats) {
-        this.candidats = candidats;
-    }
-
-    public Set<Seance> getSeances() {
-        return seances;
-    }
-
-    public Vehicule seances(Set<Seance> seances) {
-        this.seances = seances;
-        return this;
-    }
-
-    public Vehicule addSeance(Seance seance) {
-        this.seances.add(seance);
-        seance.setVehicule(this);
-        return this;
-    }
-
-    public Vehicule removeSeance(Seance seance) {
-        this.seances.remove(seance);
-        seance.setVehicule(null);
-        return this;
-    }
-
-    public void setSeances(Set<Seance> seances) {
-        this.seances = seances;
-    }
-
-    public Set<Charge> getCharges() {
-        return charges;
-    }
-
-    public Vehicule charges(Set<Charge> charges) {
-        this.charges = charges;
-        return this;
-    }
-
-    public Vehicule addCharge(Charge charge) {
-        this.charges.add(charge);
-        charge.setVehicule(this);
-        return this;
-    }
-
-    public Vehicule removeCharge(Charge charge) {
-        this.charges.remove(charge);
-        charge.setVehicule(null);
-        return this;
-    }
-
-    public void setCharges(Set<Charge> charges) {
-        this.charges = charges;
-    }
-
-    public Set<Assurance> getAssurances() {
-        return assurances;
-    }
-
-    public Vehicule assurances(Set<Assurance> assurances) {
-        this.assurances = assurances;
-        return this;
-    }
-
-    public Vehicule addAssurance(Assurance assurance) {
-        this.assurances.add(assurance);
-        assurance.setVehicule(this);
-        return this;
-    }
-
-    public Vehicule removeAssurance(Assurance assurance) {
-        this.assurances.remove(assurance);
-        assurance.setVehicule(null);
-        return this;
-    }
-
-    public void setAssurances(Set<Assurance> assurances) {
-        this.assurances = assurances;
-    }
-
-    public Set<Vignette> getVignettes() {
-        return vignettes;
-    }
-
-    public Vehicule vignettes(Set<Vignette> vignettes) {
-        this.vignettes = vignettes;
-        return this;
-    }
-
-    public Vehicule addVignette(Vignette vignette) {
-        this.vignettes.add(vignette);
-        vignette.setVehicule(this);
-        return this;
-    }
-
-    public Vehicule removeVignette(Vignette vignette) {
-        this.vignettes.remove(vignette);
-        vignette.setVehicule(null);
-        return this;
-    }
-
-    public void setVignettes(Set<Vignette> vignettes) {
-        this.vignettes = vignettes;
-    }
-
-    public Set<Entretien> getEntretiens() {
-        return entretiens;
-    }
-
-    public Vehicule entretiens(Set<Entretien> entretiens) {
-        this.entretiens = entretiens;
-        return this;
-    }
-
-    public Vehicule addEntretien(Entretien entretien) {
-        this.entretiens.add(entretien);
-        entretien.setVehicule(this);
-        return this;
-    }
-
-    public Vehicule removeEntretien(Entretien entretien) {
-        this.entretiens.remove(entretien);
-        entretien.setVehicule(null);
-        return this;
-    }
-
-    public void setEntretiens(Set<Entretien> entretiens) {
-        this.entretiens = entretiens;
+    public void setImage_Url(String image_Url) {
+        this.image_Url = image_Url;
     }
 
     public Set<Moniteur> getMoniteurs() {
@@ -297,7 +157,7 @@ public class Vehicule implements Serializable {
     public void setMoniteurs(Set<Moniteur> moniteurs) {
         this.moniteurs = moniteurs;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -315,13 +175,17 @@ public class Vehicule implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Vehicule{" +
             "id=" + getId() +
             ", matricule='" + getMatricule() + "'" +
             ", marque='" + getMarque() + "'" +
-            ", type='" + getType() + "'" +
+            ", age=" + getAge() +
+            ", description='" + getDescription() + "'" +
+            ", color='" + getColor() + "'" +
+            ", image_Url='" + getImage_Url() + "'" +
             "}";
     }
 }

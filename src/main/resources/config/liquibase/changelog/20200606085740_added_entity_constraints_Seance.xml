@@ -2,23 +2,23 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
     <!--
         Added the constraints for entity Seance.
     -->
     <changeSet id="20200606085740-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="moniteur_id"
-                                 baseTableName="seance"
-                                 constraintName="fk_seance_moniteur_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="moniteur"/>
-
         <addForeignKeyConstraint baseColumnNames="candidat_id"
                                  baseTableName="seance"
                                  constraintName="fk_seance_candidat_id"
                                  referencedColumnNames="id"
                                  referencedTableName="candidat"/>
+
+        <addForeignKeyConstraint baseColumnNames="moniteur_id"
+                                 baseTableName="seance"
+                                 constraintName="fk_seance_moniteur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="moniteur"/>
 
         <addForeignKeyConstraint baseColumnNames="vehicule_id"
                                  baseTableName="seance"

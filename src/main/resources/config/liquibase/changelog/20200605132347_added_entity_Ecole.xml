@@ -3,7 +3,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     
@@ -21,20 +21,32 @@
             <column name="adresse" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="date_creation" type="varchar(255)">
+            <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="tarifs" type="varchar(255)">
+            <column name="email" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+            <column name="num_tel" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="url_face_book" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="url_instagram" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="url_youtube" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
     <changeSet id="20200605132347-1-relations" author="jhipster">
 
     </changeSet>
-    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--
         Load sample data generated with Faker.js
@@ -52,9 +64,13 @@
             <column name="id" type="numeric"/>
             <column name="nom" type="string"/>
             <column name="adresse" type="string"/>
-            <column name="date_creation" type="string"/>
-            <column name="tarifs" type="string"/>
-            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+            <column name="description" type="string"/>
+            <column name="email" type="string"/>
+            <column name="num_tel" type="string"/>
+            <column name="url_face_book" type="string"/>
+            <column name="url_instagram" type="string"/>
+            <column name="url_youtube" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
 

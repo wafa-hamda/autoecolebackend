@@ -4,9 +4,6 @@ package com.mycompany.myapp.domain;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Ecole.
@@ -28,22 +25,25 @@ public class Ecole implements Serializable {
     @Column(name = "adresse")
     private String adresse;
 
-    @Column(name = "date_creation")
-    private String dateCreation;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "tarifs")
-    private String tarifs;
+    @Column(name = "email")
+    private String email;
 
-    @OneToMany(mappedBy = "ecole")
-    private Set<Moniteur> moniteurs = new HashSet<>();
+    @Column(name = "num_tel")
+    private String numTel;
 
-    @OneToMany(mappedBy = "ecole")
-    private Set<Candidat> candidats = new HashSet<>();
+    @Column(name = "url_face_book")
+    private String urlFaceBook;
 
-    @OneToMany(mappedBy = "ecole")
-    private Set<Vehicule> vehicules = new HashSet<>();
+    @Column(name = "url_instagram")
+    private String urlInstagram;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    @Column(name = "url_youtube")
+    private String urlYoutube;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -78,107 +78,84 @@ public class Ecole implements Serializable {
         this.adresse = adresse;
     }
 
-    public String getDateCreation() {
-        return dateCreation;
+    public String getDescription() {
+        return description;
     }
 
-    public Ecole dateCreation(String dateCreation) {
-        this.dateCreation = dateCreation;
+    public Ecole description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setDateCreation(String dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getTarifs() {
-        return tarifs;
+    public String getEmail() {
+        return email;
     }
 
-    public Ecole tarifs(String tarifs) {
-        this.tarifs = tarifs;
+    public Ecole email(String email) {
+        this.email = email;
         return this;
     }
 
-    public void setTarifs(String tarifs) {
-        this.tarifs = tarifs;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Set<Moniteur> getMoniteurs() {
-        return moniteurs;
+    public String getNumTel() {
+        return numTel;
     }
 
-    public Ecole moniteurs(Set<Moniteur> moniteurs) {
-        this.moniteurs = moniteurs;
+    public Ecole numTel(String numTel) {
+        this.numTel = numTel;
         return this;
     }
 
-    public Ecole addMoniteur(Moniteur moniteur) {
-        this.moniteurs.add(moniteur);
-        moniteur.setEcole(this);
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
+    }
+
+    public String getUrlFaceBook() {
+        return urlFaceBook;
+    }
+
+    public Ecole urlFaceBook(String urlFaceBook) {
+        this.urlFaceBook = urlFaceBook;
         return this;
     }
 
-    public Ecole removeMoniteur(Moniteur moniteur) {
-        this.moniteurs.remove(moniteur);
-        moniteur.setEcole(null);
+    public void setUrlFaceBook(String urlFaceBook) {
+        this.urlFaceBook = urlFaceBook;
+    }
+
+    public String getUrlInstagram() {
+        return urlInstagram;
+    }
+
+    public Ecole urlInstagram(String urlInstagram) {
+        this.urlInstagram = urlInstagram;
         return this;
     }
 
-    public void setMoniteurs(Set<Moniteur> moniteurs) {
-        this.moniteurs = moniteurs;
+    public void setUrlInstagram(String urlInstagram) {
+        this.urlInstagram = urlInstagram;
     }
 
-    public Set<Candidat> getCandidats() {
-        return candidats;
+    public String getUrlYoutube() {
+        return urlYoutube;
     }
 
-    public Ecole candidats(Set<Candidat> candidats) {
-        this.candidats = candidats;
+    public Ecole urlYoutube(String urlYoutube) {
+        this.urlYoutube = urlYoutube;
         return this;
     }
 
-    public Ecole addCandidat(Candidat candidat) {
-        this.candidats.add(candidat);
-        candidat.setEcole(this);
-        return this;
+    public void setUrlYoutube(String urlYoutube) {
+        this.urlYoutube = urlYoutube;
     }
-
-    public Ecole removeCandidat(Candidat candidat) {
-        this.candidats.remove(candidat);
-        candidat.setEcole(null);
-        return this;
-    }
-
-    public void setCandidats(Set<Candidat> candidats) {
-        this.candidats = candidats;
-    }
-
-    public Set<Vehicule> getVehicules() {
-        return vehicules;
-    }
-
-    public Ecole vehicules(Set<Vehicule> vehicules) {
-        this.vehicules = vehicules;
-        return this;
-    }
-
-    public Ecole addVehicule(Vehicule vehicule) {
-        this.vehicules.add(vehicule);
-        vehicule.setEcole(this);
-        return this;
-    }
-
-    public Ecole removeVehicule(Vehicule vehicule) {
-        this.vehicules.remove(vehicule);
-        vehicule.setEcole(null);
-        return this;
-    }
-
-    public void setVehicules(Set<Vehicule> vehicules) {
-        this.vehicules = vehicules;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -196,14 +173,19 @@ public class Ecole implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Ecole{" +
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", adresse='" + getAdresse() + "'" +
-            ", dateCreation='" + getDateCreation() + "'" +
-            ", tarifs='" + getTarifs() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", numTel='" + getNumTel() + "'" +
+            ", urlFaceBook='" + getUrlFaceBook() + "'" +
+            ", urlInstagram='" + getUrlInstagram() + "'" +
+            ", urlYoutube='" + getUrlYoutube() + "'" +
             "}";
     }
 }

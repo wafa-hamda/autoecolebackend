@@ -2,6 +2,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Candidat;
 import com.mycompany.myapp.repository.CandidatRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -23,6 +24,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -42,8 +44,11 @@ public class CandidatResource {
 
     private final CandidatRepository candidatRepository;
 
-    public CandidatResource(CandidatRepository candidatRepository) {
+    private final UserRepository userRepository;
+
+    public CandidatResource(CandidatRepository candidatRepository, UserRepository userRepository) {
         this.candidatRepository = candidatRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -59,6 +64,11 @@ public class CandidatResource {
         if (candidat.getId() != null) {
             throw new BadRequestAlertException("A new candidat cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (Objects.isNull(candidat.getUser())) {
+            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
+        }
+        Long userId = candidat.getUser().getId();
+        userRepository.findById(userId).ifPresent(candidat::user);
         Candidat result = candidatRepository.save(candidat);
         return ResponseEntity.created(new URI("/api/candidats/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -93,6 +103,7 @@ public class CandidatResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of candidats in body.
      */
     @GetMapping("/candidats")
+    @Transactional(readOnly = true)
     public ResponseEntity<List<Candidat>> getAllCandidats(Pageable pageable) {
         log.debug("REST request to get a page of Candidats");
         Page<Candidat> page = candidatRepository.findAll(pageable);
@@ -107,6 +118,7 @@ public class CandidatResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the candidat, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/candidats/{id}")
+    @Transactional(readOnly = true)
     public ResponseEntity<Candidat> getCandidat(@PathVariable Long id) {
         log.debug("REST request to get Candidat : {}", id);
         Optional<Candidat> candidat = candidatRepository.findById(id);

@@ -1,14 +1,15 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.mycompany.myapp.domain.enumeration.TypeMoniteur;
 
 /**
  * A Moniteur.
@@ -20,45 +21,30 @@ public class Moniteur implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @NotNull
     @Column(name = "cin", nullable = false)
     private String cin;
 
-    @NotNull
-    @Column(name = "login", nullable = false)
-    private String login;
+    @Column(name = "date_naissance")
+    private LocalDate date_naissance;
 
-    @NotNull
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "num_tel")
+    private String num_tel;
 
-    @NotNull
-    @Column(name = "nom", nullable = false)
-    private String nom;
-
-    @NotNull
-    @Column(name = "prenom", nullable = false)
-    private String prenom;
-
-    @Column(name = "telephone")
-    private String telephone;
-
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
+    private TypeMoniteur type;
 
-    @Column(name = "adresse")
-    private String adresse;
+    @Column(name = "salaire_heure")
+    private Double salaire_heure;
 
-    @Column(name = "datenais")
-    private String datenais;
+    @OneToOne
 
-    @ManyToOne
-    @JsonIgnoreProperties("moniteurs")
-    private Ecole ecole;
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
 
     @ManyToMany
     @JoinTable(name = "moniteur_vehicule",
@@ -72,13 +58,7 @@ public class Moniteur implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "candidat_id", referencedColumnName = "id"))
     private Set<Candidat> candidats = new HashSet<>();
 
-    @OneToMany(mappedBy = "moniteur")
-    private Set<Examen> examen = new HashSet<>();
-
-    @OneToMany(mappedBy = "moniteur")
-    private Set<Seance> seances = new HashSet<>();
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -100,121 +80,69 @@ public class Moniteur implements Serializable {
         this.cin = cin;
     }
 
-    public String getLogin() {
-        return login;
+    public LocalDate getDate_naissance() {
+        return date_naissance;
     }
 
-    public Moniteur login(String login) {
-        this.login = login;
+    public Moniteur date_naissance(LocalDate date_naissance) {
+        this.date_naissance = date_naissance;
         return this;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setDate_naissance(LocalDate date_naissance) {
+        this.date_naissance = date_naissance;
     }
 
-    public String getPassword() {
-        return password;
+    public String getNum_tel() {
+        return num_tel;
     }
 
-    public Moniteur password(String password) {
-        this.password = password;
+    public Moniteur num_tel(String num_tel) {
+        this.num_tel = num_tel;
         return this;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNum_tel(String num_tel) {
+        this.num_tel = num_tel;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public Moniteur nom(String nom) {
-        this.nom = nom;
-        return this;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public Moniteur prenom(String prenom) {
-        this.prenom = prenom;
-        return this;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public Moniteur telephone(String telephone) {
-        this.telephone = telephone;
-        return this;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getType() {
+    public TypeMoniteur getType() {
         return type;
     }
 
-    public Moniteur type(String type) {
+    public Moniteur type(TypeMoniteur type) {
         this.type = type;
         return this;
     }
 
-    public void setType(String type) {
+    public void setType(TypeMoniteur type) {
         this.type = type;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public Double getSalaire_heure() {
+        return salaire_heure;
     }
 
-    public Moniteur adresse(String adresse) {
-        this.adresse = adresse;
+    public Moniteur salaire_heure(Double salaire_heure) {
+        this.salaire_heure = salaire_heure;
         return this;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setSalaire_heure(Double salaire_heure) {
+        this.salaire_heure = salaire_heure;
     }
 
-    public String getDatenais() {
-        return datenais;
+    public User getUser() {
+        return user;
     }
 
-    public Moniteur datenais(String datenais) {
-        this.datenais = datenais;
+    public Moniteur user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setDatenais(String datenais) {
-        this.datenais = datenais;
-    }
-
-    public Ecole getEcole() {
-        return ecole;
-    }
-
-    public Moniteur ecole(Ecole ecole) {
-        this.ecole = ecole;
-        return this;
-    }
-
-    public void setEcole(Ecole ecole) {
-        this.ecole = ecole;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<Vehicule> getVehicules() {
@@ -266,57 +194,7 @@ public class Moniteur implements Serializable {
     public void setCandidats(Set<Candidat> candidats) {
         this.candidats = candidats;
     }
-
-    public Set<Examen> getExamen() {
-        return examen;
-    }
-
-    public Moniteur examen(Set<Examen> examen) {
-        this.examen = examen;
-        return this;
-    }
-
-    public Moniteur addExamen(Examen examen) {
-        this.examen.add(examen);
-        examen.setMoniteur(this);
-        return this;
-    }
-
-    public Moniteur removeExamen(Examen examen) {
-        this.examen.remove(examen);
-        examen.setMoniteur(null);
-        return this;
-    }
-
-    public void setExamen(Set<Examen> examen) {
-        this.examen = examen;
-    }
-
-    public Set<Seance> getSeances() {
-        return seances;
-    }
-
-    public Moniteur seances(Set<Seance> seances) {
-        this.seances = seances;
-        return this;
-    }
-
-    public Moniteur addSeance(Seance seance) {
-        this.seances.add(seance);
-        seance.setMoniteur(this);
-        return this;
-    }
-
-    public Moniteur removeSeance(Seance seance) {
-        this.seances.remove(seance);
-        seance.setMoniteur(null);
-        return this;
-    }
-
-    public void setSeances(Set<Seance> seances) {
-        this.seances = seances;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -334,19 +212,16 @@ public class Moniteur implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Moniteur{" +
             "id=" + getId() +
             ", cin='" + getCin() + "'" +
-            ", login='" + getLogin() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", nom='" + getNom() + "'" +
-            ", prenom='" + getPrenom() + "'" +
-            ", telephone='" + getTelephone() + "'" +
+            ", date_naissance='" + getDate_naissance() + "'" +
+            ", num_tel='" + getNum_tel() + "'" +
             ", type='" + getType() + "'" +
-            ", adresse='" + getAdresse() + "'" +
-            ", datenais='" + getDatenais() + "'" +
+            ", salaire_heure=" + getSalaire_heure() +
             "}";
     }
 }

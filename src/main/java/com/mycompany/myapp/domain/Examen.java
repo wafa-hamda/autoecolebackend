@@ -3,10 +3,13 @@ package com.mycompany.myapp.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.Instant;
+
+import com.mycompany.myapp.domain.enumeration.Resultat;
+
+import com.mycompany.myapp.domain.enumeration.TypeMoniteur;
 
 /**
  * A Examen.
@@ -22,29 +25,36 @@ public class Examen implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "date", nullable = false)
-    private String date;
+    @Column(name = "description")
+    private String description;
 
-    @NotNull
-    @Column(name = "type", nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "resultat")
+    private Resultat resultat;
 
-    @Column(name = "result")
-    private String result;
+    @Column(name = "date_examen")
+    private Instant dateExamen;
 
-    @Column(name = "remarque")
-    private String remarque;
+    @Column(name = "point_depart")
+    private String pointDepart;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_examen")
+    private TypeMoniteur typeExamen;
 
     @ManyToOne
-    @JsonIgnoreProperties("examen")
+    @JsonIgnoreProperties(value = "examen", allowSetters = true)
     private Candidat candidat;
 
     @ManyToOne
-    @JsonIgnoreProperties("examen")
+    @JsonIgnoreProperties(value = "examen", allowSetters = true)
     private Moniteur moniteur;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    @ManyToOne
+    @JsonIgnoreProperties(value = "examen", allowSetters = true)
+    private Vehicule vehicule;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -53,56 +63,69 @@ public class Examen implements Serializable {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public String getDescription() {
+        return description;
     }
 
-    public Examen date(String date) {
-        this.date = date;
+    public Examen description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getType() {
-        return type;
+    public Resultat getResultat() {
+        return resultat;
     }
 
-    public Examen type(String type) {
-        this.type = type;
+    public Examen resultat(Resultat resultat) {
+        this.resultat = resultat;
         return this;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setResultat(Resultat resultat) {
+        this.resultat = resultat;
     }
 
-    public String getResult() {
-        return result;
+    public Instant getDateExamen() {
+        return dateExamen;
     }
 
-    public Examen result(String result) {
-        this.result = result;
+    public Examen dateExamen(Instant dateExamen) {
+        this.dateExamen = dateExamen;
         return this;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setDateExamen(Instant dateExamen) {
+        this.dateExamen = dateExamen;
     }
 
-    public String getRemarque() {
-        return remarque;
+    public String getPointDepart() {
+        return pointDepart;
     }
 
-    public Examen remarque(String remarque) {
-        this.remarque = remarque;
+    public Examen pointDepart(String pointDepart) {
+        this.pointDepart = pointDepart;
         return this;
     }
 
-    public void setRemarque(String remarque) {
-        this.remarque = remarque;
+    public void setPointDepart(String pointDepart) {
+        this.pointDepart = pointDepart;
+    }
+
+    public TypeMoniteur getTypeExamen() {
+        return typeExamen;
+    }
+
+    public Examen typeExamen(TypeMoniteur typeExamen) {
+        this.typeExamen = typeExamen;
+        return this;
+    }
+
+    public void setTypeExamen(TypeMoniteur typeExamen) {
+        this.typeExamen = typeExamen;
     }
 
     public Candidat getCandidat() {
@@ -130,7 +153,20 @@ public class Examen implements Serializable {
     public void setMoniteur(Moniteur moniteur) {
         this.moniteur = moniteur;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public Examen vehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+        return this;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -148,14 +184,16 @@ public class Examen implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Examen{" +
             "id=" + getId() +
-            ", date='" + getDate() + "'" +
-            ", type='" + getType() + "'" +
-            ", result='" + getResult() + "'" +
-            ", remarque='" + getRemarque() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", resultat='" + getResultat() + "'" +
+            ", dateExamen='" + getDateExamen() + "'" +
+            ", pointDepart='" + getPointDepart() + "'" +
+            ", typeExamen='" + getTypeExamen() + "'" +
             "}";
     }
 }
