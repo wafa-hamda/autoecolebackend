@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDate;
+
+import com.mycompany.myapp.domain.enumeration.TypeCharge;
 
 /**
  * A Charge.
@@ -21,17 +23,27 @@ public class Charge implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "libelle")
-    private String libelle;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "prix")
-    private Integer prix;
+    @Column(name = "montant")
+    private Double montant;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_charge")
+    private TypeCharge typeCharge;
+
+    @Column(name = "date_debut")
+    private LocalDate dateDebut;
+
+    @Column(name = "date_fin")
+    private LocalDate dateFin;
 
     @ManyToOne
-    @JsonIgnoreProperties("charges")
+    @JsonIgnoreProperties(value = "charges", allowSetters = true)
     private Vehicule vehicule;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -40,30 +52,69 @@ public class Charge implements Serializable {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getDescription() {
+        return description;
     }
 
-    public Charge libelle(String libelle) {
-        this.libelle = libelle;
+    public Charge description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Integer getPrix() {
-        return prix;
+    public Double getMontant() {
+        return montant;
     }
 
-    public Charge prix(Integer prix) {
-        this.prix = prix;
+    public Charge montant(Double montant) {
+        this.montant = montant;
         return this;
     }
 
-    public void setPrix(Integer prix) {
-        this.prix = prix;
+    public void setMontant(Double montant) {
+        this.montant = montant;
+    }
+
+    public TypeCharge getTypeCharge() {
+        return typeCharge;
+    }
+
+    public Charge typeCharge(TypeCharge typeCharge) {
+        this.typeCharge = typeCharge;
+        return this;
+    }
+
+    public void setTypeCharge(TypeCharge typeCharge) {
+        this.typeCharge = typeCharge;
+    }
+
+    public LocalDate getDateDebut() {
+        return dateDebut;
+    }
+
+    public Charge dateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+        return this;
+    }
+
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    public Charge dateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+        return this;
+    }
+
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
     }
 
     public Vehicule getVehicule() {
@@ -78,7 +129,7 @@ public class Charge implements Serializable {
     public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -96,12 +147,16 @@ public class Charge implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Charge{" +
             "id=" + getId() +
-            ", libelle='" + getLibelle() + "'" +
-            ", prix=" + getPrix() +
+            ", description='" + getDescription() + "'" +
+            ", montant=" + getMontant() +
+            ", typeCharge='" + getTypeCharge() + "'" +
+            ", dateDebut='" + getDateDebut() + "'" +
+            ", dateFin='" + getDateFin() + "'" +
             "}";
     }
 }

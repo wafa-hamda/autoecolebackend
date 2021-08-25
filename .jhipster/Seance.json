@@ -1,54 +1,63 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "moniteur",
-            "otherEntityName": "moniteur",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "seance"
-        },
-        {
-            "relationshipName": "candidat",
-            "otherEntityName": "candidat",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "seance"
-        },
-        {
-            "relationshipName": "vehicule",
-            "otherEntityName": "vehicule",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "seance"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "dateHeurePrevu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "dateHeureReel",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "nbrHeure",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "type",
-            "fieldType": "String"
-        }
-    ],
-    "changelogDate": "20200606085740",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "seance",
-    "databaseType": "sql",
-    "readOnly": false,
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "candidat",
+      "otherEntityName": "candidat",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "seance"
+    },
+    {
+      "relationshipName": "moniteur",
+      "otherEntityName": "moniteur",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "seance"
+    },
+    {
+      "relationshipName": "vehicule",
+      "otherEntityName": "vehicule",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "seance"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "duree",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "typeSeance",
+      "fieldType": "TypeMoniteur",
+      "fieldValues": "CODE,CONDUIT"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "point_depart",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numberSeance",
+      "fieldType": "Integer"
+    }
+  ],
+  "changelogDate": "20200606085740",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "seance",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "pagination"
 }

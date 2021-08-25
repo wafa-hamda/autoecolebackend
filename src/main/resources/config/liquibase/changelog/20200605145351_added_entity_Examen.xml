@@ -3,7 +3,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     
@@ -15,16 +15,19 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="date" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            <column name="type" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-            <column name="result" type="varchar(255)">
+            <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="remarque" type="varchar(255)">
+            <column name="resultat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_examen" type="datetime">
+                <constraints nullable="true" />
+            </column>
+            <column name="point_depart" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_examen" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="candidat_id" type="bigint">
@@ -33,14 +36,18 @@
             <column name="moniteur_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+            <column name="vehicule_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="examen" columnName="date_examen" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20200605145351-1-relations" author="jhipster">
 
     </changeSet>
-    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--
         Load sample data generated with Faker.js
@@ -56,11 +63,12 @@
                   separator=";"
                   tableName="examen">
             <column name="id" type="numeric"/>
-            <column name="date" type="string"/>
-            <column name="type" type="string"/>
-            <column name="result" type="string"/>
-            <column name="remarque" type="string"/>
-            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+            <column name="description" type="string"/>
+            <column name="resultat" type="string"/>
+            <column name="date_examen" type="datetime"/>
+            <column name="point_depart" type="string"/>
+            <column name="type_examen" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
 

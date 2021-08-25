@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.Instant;
+
+import com.mycompany.myapp.domain.enumeration.TypeMoniteur;
 
 /**
  * A Seance.
@@ -21,31 +23,38 @@ public class Seance implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "date_heure_prevu")
-    private String dateHeurePrevu;
+    @Column(name = "date_debut")
+    private Instant dateDebut;
 
-    @Column(name = "date_heure_reel")
-    private String dateHeureReel;
+    @Column(name = "duree")
+    private Integer duree;
 
-    @Column(name = "nbr_heure")
-    private Integer nbrHeure;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_seance")
+    private TypeMoniteur typeSeance;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "note")
+    private String note;
+
+    @Column(name = "point_depart")
+    private String point_depart;
+
+    @Column(name = "number_seance")
+    private Integer numberSeance;
 
     @ManyToOne
-    @JsonIgnoreProperties("seances")
-    private Moniteur moniteur;
-
-    @ManyToOne
-    @JsonIgnoreProperties("seances")
+    @JsonIgnoreProperties(value = "seances", allowSetters = true)
     private Candidat candidat;
 
     @ManyToOne
-    @JsonIgnoreProperties("seances")
+    @JsonIgnoreProperties(value = "seances", allowSetters = true)
+    private Moniteur moniteur;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "seances", allowSetters = true)
     private Vehicule vehicule;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -54,69 +63,82 @@ public class Seance implements Serializable {
         this.id = id;
     }
 
-    public String getDateHeurePrevu() {
-        return dateHeurePrevu;
+    public Instant getDateDebut() {
+        return dateDebut;
     }
 
-    public Seance dateHeurePrevu(String dateHeurePrevu) {
-        this.dateHeurePrevu = dateHeurePrevu;
+    public Seance dateDebut(Instant dateDebut) {
+        this.dateDebut = dateDebut;
         return this;
     }
 
-    public void setDateHeurePrevu(String dateHeurePrevu) {
-        this.dateHeurePrevu = dateHeurePrevu;
+    public void setDateDebut(Instant dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public String getDateHeureReel() {
-        return dateHeureReel;
+    public Integer getDuree() {
+        return duree;
     }
 
-    public Seance dateHeureReel(String dateHeureReel) {
-        this.dateHeureReel = dateHeureReel;
+    public Seance duree(Integer duree) {
+        this.duree = duree;
         return this;
     }
 
-    public void setDateHeureReel(String dateHeureReel) {
-        this.dateHeureReel = dateHeureReel;
+    public void setDuree(Integer duree) {
+        this.duree = duree;
     }
 
-    public Integer getNbrHeure() {
-        return nbrHeure;
+    public TypeMoniteur getTypeSeance() {
+        return typeSeance;
     }
 
-    public Seance nbrHeure(Integer nbrHeure) {
-        this.nbrHeure = nbrHeure;
+    public Seance typeSeance(TypeMoniteur typeSeance) {
+        this.typeSeance = typeSeance;
         return this;
     }
 
-    public void setNbrHeure(Integer nbrHeure) {
-        this.nbrHeure = nbrHeure;
+    public void setTypeSeance(TypeMoniteur typeSeance) {
+        this.typeSeance = typeSeance;
     }
 
-    public String getType() {
-        return type;
+    public String getNote() {
+        return note;
     }
 
-    public Seance type(String type) {
-        this.type = type;
+    public Seance note(String note) {
+        this.note = note;
         return this;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNote(String note) {
+        this.note = note;
     }
 
-    public Moniteur getMoniteur() {
-        return moniteur;
+    public String getPoint_depart() {
+        return point_depart;
     }
 
-    public Seance moniteur(Moniteur moniteur) {
-        this.moniteur = moniteur;
+    public Seance point_depart(String point_depart) {
+        this.point_depart = point_depart;
         return this;
     }
 
-    public void setMoniteur(Moniteur moniteur) {
-        this.moniteur = moniteur;
+    public void setPoint_depart(String point_depart) {
+        this.point_depart = point_depart;
+    }
+
+    public Integer getNumberSeance() {
+        return numberSeance;
+    }
+
+    public Seance numberSeance(Integer numberSeance) {
+        this.numberSeance = numberSeance;
+        return this;
+    }
+
+    public void setNumberSeance(Integer numberSeance) {
+        this.numberSeance = numberSeance;
     }
 
     public Candidat getCandidat() {
@@ -132,6 +154,19 @@ public class Seance implements Serializable {
         this.candidat = candidat;
     }
 
+    public Moniteur getMoniteur() {
+        return moniteur;
+    }
+
+    public Seance moniteur(Moniteur moniteur) {
+        this.moniteur = moniteur;
+        return this;
+    }
+
+    public void setMoniteur(Moniteur moniteur) {
+        this.moniteur = moniteur;
+    }
+
     public Vehicule getVehicule() {
         return vehicule;
     }
@@ -144,7 +179,7 @@ public class Seance implements Serializable {
     public void setVehicule(Vehicule vehicule) {
         this.vehicule = vehicule;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -162,14 +197,17 @@ public class Seance implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Seance{" +
             "id=" + getId() +
-            ", dateHeurePrevu='" + getDateHeurePrevu() + "'" +
-            ", dateHeureReel='" + getDateHeureReel() + "'" +
-            ", nbrHeure=" + getNbrHeure() +
-            ", type='" + getType() + "'" +
+            ", dateDebut='" + getDateDebut() + "'" +
+            ", duree=" + getDuree() +
+            ", typeSeance='" + getTypeSeance() + "'" +
+            ", note='" + getNote() + "'" +
+            ", point_depart='" + getPoint_depart() + "'" +
+            ", numberSeance=" + getNumberSeance() +
             "}";
     }
 }

@@ -2,6 +2,7 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Moniteur;
 import com.mycompany.myapp.repository.MoniteurRepository;
+import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -23,6 +24,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -42,8 +44,11 @@ public class MoniteurResource {
 
     private final MoniteurRepository moniteurRepository;
 
-    public MoniteurResource(MoniteurRepository moniteurRepository) {
+    private final UserRepository userRepository;
+
+    public MoniteurResource(MoniteurRepository moniteurRepository, UserRepository userRepository) {
         this.moniteurRepository = moniteurRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -59,6 +64,11 @@ public class MoniteurResource {
         if (moniteur.getId() != null) {
             throw new BadRequestAlertException("A new moniteur cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (Objects.isNull(moniteur.getUser())) {
+            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
+        }
+        Long userId = moniteur.getUser().getId();
+        userRepository.findById(userId).ifPresent(moniteur::user);
         Moniteur result = moniteurRepository.save(moniteur);
         return ResponseEntity.created(new URI("/api/moniteurs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -94,6 +104,7 @@ public class MoniteurResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of moniteurs in body.
      */
     @GetMapping("/moniteurs")
+    @Transactional(readOnly = true)
     public ResponseEntity<List<Moniteur>> getAllMoniteurs(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Moniteurs");
         Page<Moniteur> page;
@@ -113,6 +124,7 @@ public class MoniteurResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the moniteur, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/moniteurs/{id}")
+    @Transactional(readOnly = true)
     public ResponseEntity<Moniteur> getMoniteur(@PathVariable Long id) {
         log.debug("REST request to get Moniteur : {}", id);
         Optional<Moniteur> moniteur = moniteurRepository.findOneWithEagerRelationships(id);

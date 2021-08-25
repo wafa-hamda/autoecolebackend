@@ -1,11 +1,11 @@
-id;libelle;prix
-1;invoice auxiliary;25230
-2;Assurance Licensed;68924
-3;Texas Bacon indexing;44927
-4;revolutionary;98861
-5;pixel;43350
-6;Rand Namibia Dollar deposit;76965
-7;Gabon;98922
-8;Corporate Plain;91545
-9;Route District;79675
-10;didactic Solutions Dalasi;94592
+id;description;montant;type_charge;date_debut;date_fin
+1;invoice auxiliary;25230;ENTRETIEN;2020-06-05;2020-06-06
+2;Bacon indexing Causeway;35389;ENTRETIEN;2020-06-06;2020-06-06
+3;Rand Namibia Dollar deposit;76965;ENTRETIEN;2020-06-06;2020-06-05
+4;Plain;91545;ENTRETIEN;2020-06-05;2020-06-06
+5;Solutions;68424;ENTRETIEN;2020-06-05;2020-06-06
+6;Balboa US Dollar;53581;VIGNETTE;2020-06-05;2020-06-05
+7;Jordanian Dinar;69380;VIGNETTE;2020-06-06;2020-06-06
+8;grow Analyst Colombia;46290;ENTRETIEN;2020-06-05;2020-06-06
+9;Netherlands Antillian Guilder Practical index;90687;ASSURENCE;2020-06-06;2020-06-06
+10;Rubber redundant solid state;32805;ENTRETIEN;2020-06-05;2020-06-06

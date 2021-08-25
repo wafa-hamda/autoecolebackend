@@ -1,32 +1,45 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "vehicule",
-            "otherEntityName": "vehicule",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "charge"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "libelle",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "prix",
-            "fieldType": "Integer"
-        }
-    ],
-    "changelogDate": "20200606151737",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "charge",
-    "databaseType": "sql",
-    "readOnly": false,
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "vehicule",
+      "otherEntityName": "vehicule",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "charge"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "typeCharge",
+      "fieldType": "TypeCharge",
+      "fieldValues": "ASSURENCE,VIGNETTE,ENTRETIEN"
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "changelogDate": "20200606151737",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "charge",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "pagination"
 }
